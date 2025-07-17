@@ -7,6 +7,11 @@ When to use:
     - class with multiple optional parameters.
     - great for classes with complex configurations or custom attributes.
 
+Tip:
+    - Name the inner static class as Builder always
+        (e.g: main class - Burger, and static class as Builder and 
+            can be used as Burger.Builder().build() which is initutive)
+
 When to avoid:
     - class with 1-2 fields
     - dont need immutability or custom object build
@@ -33,7 +38,7 @@ class BurgerMeal {
     private final List<String> toppings; 
     private final boolean hasDrink;
 
-    private BurgerMeal(MealBuilder builder){
+    private BurgerMeal(Builder builder){
         this.bunType = builder.bunType;
         this.pattyType = builder.pattyType;
         this.hasCheese = builder.hasCheese;
@@ -47,7 +52,7 @@ class BurgerMeal {
         return "bun:"+bunType+" patty:"+pattyType+" side:"+side+" drink:"+hasDrink+" toppings:"+ toppings+" cheese:"+hasCheese;
     }
 
-    public static class MealBuilder{
+    public static class Builder{
         private String bunType;
         private String pattyType;
 
@@ -56,31 +61,31 @@ class BurgerMeal {
         private List<String> toppings; 
         private boolean hasDrink;
 
-        public MealBuilder(String bunType, String pattyType){
+        public Builder(String bunType, String pattyType){
             this.bunType = bunType;
 
             this.pattyType = pattyType;
         }
 
-        public MealBuilder withCheese(boolean value){
+        public Builder withCheese(boolean value){
             this.hasCheese = value;
 
             return this;
         }
 
-        public MealBuilder withSide(String value){
+        public Builder withSide(String value){
             this.side = value;
 
             return this;
         }
 
-        public MealBuilder withDrink(boolean value){
+        public Builder withDrink(boolean value){
             this.hasDrink = value;
 
             return this;
         }
 
-        public MealBuilder withToppings(List<String> value){
+        public Builder withToppings(List<String> value){
             this.toppings = value;
 
             return this;
@@ -94,13 +99,13 @@ class BurgerMeal {
 
 public class Builder {
     public static void main(String[] args) {
-        // Note: dont use same prefix as main class like BurgerMealBuilder
-        BurgerMeal meal1 = new BurgerMeal.MealBuilder("wheat", "veg")
+        // Note: dont use same prefix as main class like BurgerBuilder
+        BurgerMeal meal1 = new BurgerMeal.Builder("wheat", "veg")
             .build();
     
         System.out.println(meal1.toString());
 
-        BurgerMeal meal2 = new BurgerMeal.MealBuilder("multi-grain", "non-veg")
+        BurgerMeal meal2 = new BurgerMeal.Builder("multi-grain", "non-veg")
                 .withCheese(true)
                 .withSide("fries")
                 .withDrink(true)
