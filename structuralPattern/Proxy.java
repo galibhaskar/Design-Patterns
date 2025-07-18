@@ -112,7 +112,7 @@ class FilteredVideoDownloader implements VideoDownloader{
 
 }
 
-public class ProxyPattern {
+public class Proxy {
     public static void main(String[] args) {
         // VideoDownloader downloader1 = new CachedVideoDownload();
 
