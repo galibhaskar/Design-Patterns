@@ -53,7 +53,6 @@ class WelcomeEmail implements EmailTemplate{
 
     @Override
     public void send(String email) {
-        // TODO Auto-generated method stub
         System.out.println("Sending email to:"+email+" with subject:"+subject+" content:"+content);
     }
 
@@ -87,7 +86,6 @@ class DiscountEmail implements EmailTemplate{
 
     @Override
     public void send(String email) {
-        // TODO Auto-generated method stub
         System.out.println("Sending email to:"+email+" with subject:"+subject+" content:"+content);
     }
 
